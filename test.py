@@ -1,8 +1,12 @@
-import pyupbit
-
-access = "2PpVZds2hxs1nxvz4nWIKaLGBC6JmvEPrOLxnWzS"          # 본인 값으로 변경
-secret = "a4yWvmQyiqkoEycpYUO3lD8nOy2YAGBD7QdOD7xL"          # 본인 값으로 변경
-upbit = pyupbit.Upbit(access, secret)
-
-print(upbit.get_balance("KRW-XRP"))     # KRW-XRP 조회
-print(upbit.get_balance("KRW"))         # 보유 현금 조회
+import requests
+ 
+def post_message(token, channel, text):
+    response = requests.post("https://slack.com/api/chat.postMessage",
+        headers={"Authorization": "Bearer "+token},
+        data={"channel": channel,"text": text}
+    )
+    print(response)
+ 
+myToken = "xoxb-2499428039858-2532803133058-DB3ehVDYf0x0X2yCj27xgnO1"
+ 
+post_message(myToken,"#coin","Everything will be alright")
